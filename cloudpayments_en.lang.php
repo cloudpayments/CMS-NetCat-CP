@@ -1,0 +1,7 @@
+<?php
+/* CloudPayments */
+define("NETCAT_MODULE_PAYMENT_CLOUDPAYMENTS_ERROR_PUBLIC_ID_IS_NULL", "Field 'public_id' required");
+define("NETCAT_MODULE_PAYMENT_CLOUDPAYMENTS_ERROR_SECRET_KEY_IS_NULL", "Field 'secret_key' required");
+define("NETCAT_MODULE_PAYMENT_CLOUDPAYMENTS_ORDER", "Order");
+define("NETCAT_MODULE_PAYMENT_CLOUDPAYMENTS_BUYER", "Buyer");
+define("NETCAT_MODULE_PAYMENT_CLOUDPAYMENTS_PAYMENT_AUTHORIZED", "CloudPayments: Payment authorized");
