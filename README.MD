@@ -23,7 +23,7 @@ http://domain.ru/netcat/modules/payment/callback.php?paySystem=nc_payment_system
 * **Уведомление о подтверждении платежа** (Confirm):\
 http://domain.ru/netcat/modules/payment/callback.php?paySystem=nc_payment_system_cloudpayments&nc_action=confirm
 Требуется только при двухстадийной оплате.
-* **Уведомление о возврате платежа* (Refund):\
+* **Уведомление о возврате платежа** (Refund):\
 http://domain.ru/netcat/modules/payment/callback.php?paySystem=nc_payment_system_cloudpayments&nc_action=refund
 
 Где domain.ru — доменное имя вашего сайта. Во всех случаях требуется выбирать вариант по умолчанию: кодировка — UTF-8, HTTP-метод — POST, формат — CloudPayments
