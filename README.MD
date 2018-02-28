@@ -1,7 +1,7 @@
 Модуль позволит с легкостью добавить на ваш сайт оплату банковскими картами через платежный сервис CloudPayments. 
 Для корректной работы модуля необходима регистрация в сервисе.
 
-Порядок регистрации описан в документации CloudPayments https://cloudpayments.ru/Docs/Connect
+Порядок регистрации описан в [документации CloudPayments](https://cloudpayments.ru/Docs/Connect)
 ## Возможности
 	
 * Одностадийная схема оплаты;  
@@ -38,7 +38,7 @@ http://domain.ru/netcat/modules/payment/callback.php?paySystem=nc_payment_system
 * **enable_dms** — Включение/отключение двухстадийной оплаты. Возможные значения 0 или 1;
 При использовании интеграции с онлайн-кассой
 * **enable_kkt** — Включение/отключение формирования онлайн-чека при оплате. Возможные значения 0 или 1;
-* **taxation_system** — Тип системы налогообложения. Возможные значения перечислены в документации CloudPayments https://cloudpayments.ru/Docs/Directory#taxation-system;
+* **taxation_system** — Тип системы налогообложения. [Возможные значения](https://cloudpayments.ru/Docs/Directory#taxation-system ) перечислены в документации CloudPayments;
 
 После указания всех данных сохранить настройки.
 
