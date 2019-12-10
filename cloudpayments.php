@@ -10,52 +10,30 @@ class nc_payment_system_cloudpayments extends nc_payment_system {
 
     protected $automatic = true;
 
-    protected $accepted_currencies = array(
-        'RUB',
-        'RUR',
-        'USD',
-        'EUR',
-        'GBP',
-        'UAH',
-        'BYR',
-        'BYN',
-        'KZT',
-        'AZN',
-        'CHF',
-        'CZK',
-        'CAD',
-        'PLN',
-        'SEK',
-        'TRY',
-        'CNY',
-        'INR',
-        'BRL',
-        'ZAL',
-        'UZS',
-    );
-
-    protected $currency_map = array('RUR' => 'RUB');
-
     // параметры сайта в платежной системе
     protected $settings = array(
         'public_id'       => null,
         'secret_key'      => null,
+        'skin'            => 'classic',
+        'currency'        => 'RUB',
         'language'        => 'ru-RU',
         'enable_dms'      => '0',
-        'enable_kkt'      => '0',
-        'taxation_system' => null,
+        'enable_kkt'      => '1',
+        'taxation_system' => '1',
         'success_url'     => null,
         'fail_url'        => null,
     );
-
+    
     static protected $vat_map = array(
         ''   => '',
         0    => '0',
         10   => '10',
-        18   => '18',
+        20   => '20',
+        110   => '110',
+        120   => '120'
     );
-    static protected $cloudpayments_default_vat = '18';
-
+    static protected $cloudpayments_default_vat = '20';
+    
     public function can_send_receipt_data_with_invoice() {
         return boolval($this->get_setting('enable_kkt'));
     }
@@ -194,7 +172,8 @@ class nc_payment_system_cloudpayments extends nc_payment_system {
             'publicId'    => $this->get_setting('public_id'),  //id из личного кабинета
             'description' => $invoice->get_description(), //назначение
             'amount'      => floatval($invoice->get_amount()), //сумма
-            'currency'    => $this->get_currency_code($invoice->get_currency()), //валюта
+            'skin'        => $this->get_setting('skin'),  //id из личного кабинета
+            'currency'    => $this->get_setting('currency'), //валюта
             'invoiceId'   => intval($invoice->get('order_id')), //номер заказа  (необязательно)
             'accountId'   => $invoice->get('customer_email'), //идентификатор плательщика (необязательно)
             'data'        => array(
@@ -225,7 +204,7 @@ class nc_payment_system_cloudpayments extends nc_payment_system {
             $fail_url = '/';
         }
 
-        $result = "<script src=\"https://widget.cloudpayments.ru/bundles/cloudpayments\"></script>" . PHP_EOL;
+        $result = "<script src=\"https://widget.cloudpayments.ru/bundles/cloudpayments?cms=NetCat\"></script>" . PHP_EOL;
         $result .= "<form id='nc_module_payment_system_cloudpayments_form' method='post'>";
         $result .= "<input type='submit' value='" . NETCAT_MODULE_PAYMENT_FORM_PAY . "'>";
         $result .= "</form>" . PHP_EOL;
@@ -262,6 +241,7 @@ SCRIPT;
         $receipt_data = array(
             'Items'          => array(),
             'taxationSystem' => $tax_system,
+            'calculationPlace'=>'www.'.$_SERVER['SERVER_NAME'],
             'email'          => $invoice->get('customer_email'),
             'phone'          => $invoice->get('customer_phone')
         );
